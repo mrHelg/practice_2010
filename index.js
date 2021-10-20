@@ -43,12 +43,42 @@ class LinkedList {
     }
     return ++this.length;
   }
-  
+
+  pop() {
+    if (this.length === 0) {
+      return undefined;
+    }
+    const value = this.tail.value;
+    if (this.length === 1) {
+      this.tail = null;
+      this.head = null;
+    } else {
+      this.tail = this.tail.prev;
+      this.tail.next = null;
+    }
+    this.length--;
+    return value;
+  }
+
   [Symbol.iterator]() {
     return new LinkedListIterator(this);
   }
 }
 
-const linkedList1 = new LinkedList(true);
+const linkedList1 = new LinkedList(true, 77);
+console.log(...linkedList1);
+console.log(linkedList1.pop());
+console.log(linkedList1.pop());
+
 const linkedList2 = new LinkedList(1, true, {}, 'qwerty', 55);
 console.log(...linkedList2);
+console.log(linkedList2.pop());
+console.log(linkedList2.pop());
+console.log(linkedList2.pop());
+console.log(linkedList2.pop());
+console.log(linkedList2.pop());
+console.log(linkedList2.pop());
+
+const linkedList3 = new LinkedList();
+console.log(...linkedList3);
+console.log(linkedList3.pop());
